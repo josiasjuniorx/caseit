@@ -1,0 +1,75 @@
+version: "3"
+
+services:
+  elasticsearch:
+    image: docker.io/bitnami/elasticsearch:7.14.2
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    volumes:
+      - 'elasticsearch_data:/bitnami/elasticsearch/data'
+
+  kibana:
+    image: docker.io/bitnami/kibana:7.14.2
+    ports:
+      - "5601:5601"
+    volumes:
+      - "kibana_data:/bitnami/kibana"
+    depends_on:
+      - elasticsearch
+
+  fluentd:
+    image: docker.io/bitnami/fluentd:1.14.0-debian-10-r7
+    ports:
+      - '24224:24224'
+      - '5140:5140'
+    volumes:
+      - ./docker/fluentd/fluentd.conf:/opt/bitnami/fluentd/conf/fluentd.conf
+      - 'django_logs:/var/log/django'
+      - 'nginx_logs:/var/log/nginx/'
+    depends_on:
+      - elasticsearch
+      - nginx
+
+  django:
+    build: docker/django/
+    command: uwsgi --http-socket 0.0.0.0:8000 --chdir ./ --wsgi-file caseita/wsgi.py --processes=5 --harakiri=20 --master --pidfile=/tmp/caseita-master.pid
+    volumes:
+      - ./caseita:/code/
+      - 'django_logs:/var/log/django'
+    ports:
+      - "8000:8000"
+
+  nginx:
+    image: docker.io/bitnami/nginx:1.21
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./docker/nginx/nginx.conf:/opt/bitnami/nginx/conf/nginx.conf
+      - 'nginx_logs:/tmp/'
+    depends_on:
+      - django
+
+  grafana:
+    image: docker.io/bitnami/grafana:8
+    ports:
+      - '3000:3000'
+    environment:
+      - 'GF_SECURITY_ADMIN_PASSWORD=admin'
+    volumes:
+      - grafana_data:/opt/bitnami/grafana/data
+      - ./docker/grafana/grafana.db:/opt/bitnami/grafana/data/grafana.db
+    depends_on:
+      - elasticsearch
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  kibana_data:
+    driver: local
+  django_logs:
+    driver: local
+  nginx_logs:
+    driver: local
+  grafana_data:
+    driver: local

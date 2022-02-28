@@ -1,0 +1,128 @@
+{
+	"variables": [],
+	"info": {
+		"name": "caseita",
+		"_postman_id": "9f5bc22a-600d-dc4b-ae22-a9fc1d9e1805",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateDB",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/create",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "index",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "categoria-chapeu",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/categoria/chapeu",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "categoria-oculos",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/categoria/oculos",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "todos-gatos",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/todos",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "consulta-por-raca",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/todos",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "consulta-por-temperamento",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/temperamento/loyal",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "consulta-por-origem",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/origem/egypt",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "atualiza-urls-da-raca-via-id",
+			"request": {
+				"url": "http://127.0.0.1:8080/catapi/update/abys",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

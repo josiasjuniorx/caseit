@@ -1,0 +1,23 @@
+<button type="button"><a href=categoria/chapeu>Chapeu</a></button>
+<button type="button"><a href=categoria/oculos>Oculos</a></button>
+<br><br><br>
+
+
+{% for breed in catinfo %}
+    ID: {{ breed.id }}<br>
+    Raça: {{ breed.nome }}<br>
+    Origem: {{ breed.origem }}<br>
+    Temperamento: {{ breed.temperamento }}<br>
+    Descrição: {{ breed.descricao }}<br>
+    {% for breedurl in imageurls %}
+        {% if breed.id in breedurl.values %}
+            <img src="{{ breedurl.url0 }}" width="64" height="64">
+            <img src="{{ breedurl.url1 }}" width="64" height="64">
+            <img src="{{ breedurl.url2 }}" width="64" height="64">
+            <button type="button"><a href="update/{{breed.id}}">atualizar imagens</a></button>
+        {% endif %}
+    {% endfor %}
+     <br><br>
+{% endfor %}
+
+
