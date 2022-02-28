@@ -1,5 +1,8 @@
 ## CaseItau
 
+![1](diagrama-caseita.jpg)
+
+
 ### Para construir o ambiente é necessário o docker e docker-compose
 ~~~
 dentro da raiz do projeto, executar os seguintes passos:
